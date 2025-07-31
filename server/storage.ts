@@ -108,31 +108,31 @@ export class MemStorage implements IStorage {
         name: "Snapseed",
         developer: "Google LLC",
         category: "Nhiếp ảnh",
-        icon: "https://play-lh.googleusercontent.com/Rilq4obCk7XIl2Pjb8XT-Ydh_aI3hBNeFwro9fFXrIAuC-zPxCZ4feE4rx5fZ3jHNLw=w240-h480-rw",
+        icon: "https://images.unsplash.com/photo-1611224923853-80b023f02d71?ixlib=rb-4.0.3&w=48&h=48&fit=crop",
         rating: "4.0"
       },
       {
         id: randomUUID(),
-        name: "Lightroom Photo & Video Editor",
+        name: "Adobe Lightroom",
         developer: "Adobe",
         category: "Nhiếp ảnh",
-        icon: "https://play-lh.googleusercontent.com/RGvuFCqPOIiR1i9QDN6-HNt5nOuWj4zuqQduxnJn0ughdo-yhAJNG1r6W1A3Fc6Z9w=w240-h480-rw",
+        icon: "https://images.unsplash.com/photo-1565106430482-8f6e74349ca1?ixlib=rb-4.0.3&w=48&h=48&fit=crop",
         rating: "4.6"
       },
       {
         id: randomUUID(),
-        name: "Photoshop Express Photo Editor",
+        name: "Photoshop Express",
         developer: "Adobe",
         category: "Nhiếp ảnh",
-        icon: "https://play-lh.googleusercontent.com/r9zF77jorOmkaRlXnvsLiuVQ3p_gYW8y7x_UL-COoH9PxaTUEMbW1wiwS0z1n1Q31Q=w240-h480-rw",
+        icon: "https://images.unsplash.com/photo-1558618047-0c4e95cefe72?ixlib=rb-4.0.3&w=48&h=48&fit=crop",
         rating: "4.6"
       },
       {
         id: randomUUID(),
-        name: "Picsart AI Photo Editor, Video",
+        name: "PicsArt Photo Editor",
         developer: "PicsArt, Inc.",
         category: "Nhiếp ảnh",
-        icon: "https://play-lh.googleusercontent.com/1JMJ518jogwPeaD0pYn2mBu1cRLD0xRi45wNbtTIRvam1_xx-y3KJOjRAx-W9P4Lf0U=w240-h480-rw",
+        icon: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&w=48&h=48&fit=crop",
         rating: "4.1"
       },
       {
@@ -140,32 +140,32 @@ export class MemStorage implements IStorage {
         name: "Remini - AI Photo Enhancer",
         developer: "Bending Spoons",
         category: "Nhiếp ảnh",
-        icon: "https://play-lh.googleusercontent.com/XJ6_UDSJx-QHQreBmIro5VMRJ--42F1XY3QphSYkeSRZdAUA0o_Y-EydVdK-NZOh=w240-h480-rw",
+        icon: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&w=48&h=48&fit=crop",
         rating: "4.2"
       },
       {
         id: randomUUID(),
-        name: "Hypic - Photo Editor & AI Art",
-        developer: "Bytedance Pte. Ltd.",
+        name: "VSCO Photo Editor",
+        developer: "VSCO",
         category: "Nhiếp ảnh",
-        icon: "https://play-lh.googleusercontent.com/Izb4AbKLUUUeFCvdUjWBnA7OyJZhY4U8Y9vbWTxV203-OAb35JvKEyw8gxoQupPrSfc=w240-h480-rw",
-        rating: "4.4"
+        icon: "https://images.unsplash.com/photo-1556656793-08538906a9f8?ixlib=rb-4.0.3&w=48&h=48&fit=crop",
+        rating: "4.3"
       },
       {
         id: randomUUID(),
-        name: "Presets for Lightroom — FLTR",
-        developer: "Mobile Presets & Filters",
-        category: "Nhiếp ảnh",
-        icon: "https://play-lh.googleusercontent.com/LfN_jL2lUVLl4CrExxHmf79BxHsBLbRAD_4gGDaHJr_oxJp4OXa-SeGLPlleN1alr7Y=w240-h480-rw",
-        rating: "4.6"
-      },
-      {
-        id: randomUUID(),
-        name: "Canva: Design, Photo & Video",
+        name: "Canva: Design & Photo",
         developer: "Canva",
         category: "Nghệ thuật & Thiết kế",
-        icon: "https://play-lh.googleusercontent.com/mDKKmfE6E7YrfGJIQ9JQsK3y3aJQUIc_qFtOJpd0E3xCKfE_wFGHsE_J8KLpEsKJA=w240-h480-rw",
+        icon: "https://images.unsplash.com/photo-1561736778-92e52a7769ef?ixlib=rb-4.0.3&w=48&h=48&fit=crop",
         rating: "4.7"
+      },
+      {
+        id: randomUUID(),
+        name: "InShot Video Editor",
+        developer: "InShot Inc.",
+        category: "Video",
+        icon: "https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&w=48&h=48&fit=crop",
+        rating: "4.6"
       }
     ];
     
