@@ -1,0 +1,197 @@
+import { type App, type InsertApp, type Review, type InsertReview, type DeveloperApp, type InsertDeveloperApp, type SimilarApp, type InsertSimilarApp } from "@shared/schema";
+import { randomUUID } from "crypto";
+
+export interface IStorage {
+  getApp(id: string): Promise<App | undefined>;
+  getAppByName(name: string): Promise<App | undefined>;
+  createApp(app: InsertApp): Promise<App>;
+  getReviewsByAppId(appId: string): Promise<Review[]>;
+  createReview(review: InsertReview): Promise<Review>;
+  getDeveloperApps(developer: string): Promise<DeveloperApp[]>;
+  getSimilarApps(): Promise<SimilarApp[]>;
+  getAllApps(): Promise<App[]>;
+}
+
+export class MemStorage implements IStorage {
+  private apps: Map<string, App>;
+  private reviews: Map<string, Review>;
+  private developerApps: Map<string, DeveloperApp>;
+  private similarApps: Map<string, SimilarApp>;
+
+  constructor() {
+    this.apps = new Map();
+    this.reviews = new Map();
+    this.developerApps = new Map();
+    this.similarApps = new Map();
+    
+    // Initialize with AirDroid app data
+    this.initializeData();
+  }
+
+  private initializeData() {
+    // Main app
+    const airDroidApp: App = {
+      id: "airdroid-1",
+      name: "AirDroid: File & Remote Access",
+      developer: "SAND STUDIO",
+      category: "Năng suất",
+      icon: "https://play-lh.googleusercontent.com/CDWoS9eWvRD3DKvs-Cd34AX7VZ3LPFaqhpeKV36R51D3AauQk4NvwsTz55Yps6u9mA=w64-h64-rw",
+      rating: "3.8",
+      totalReviews: 14500,
+      downloads: "10M+",
+      contentRating: "4+",
+      description: "AirDroid là ứng dụng quản lý thiết bị di động mạnh mẽ, cho phép bạn truy cập và quản lý thiết bị Android từ xa thông qua máy tính hoặc trình duyệt web.\n\nVới AirDroid, bạn có thể:\n• Truyền file giữa thiết bị và máy tính một cách dễ dàng\n• Quản lý tin nhắn SMS từ máy tính\n• Điều khiển thiết bị Android từ xa\n• Sao lưu và đồng bộ dữ liệu\n• Chia sẻ màn hình và điều khiển từ xa",
+      lastUpdated: "31 thg 7, 2025",
+      version: "4.3.2.2",
+      screenshots: [
+        "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?ixlib=rb-4.0.3&w=200&h=356&fit=crop",
+        "https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&w=200&h=356&fit=crop",
+        "https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&w=200&h=356&fit=crop",
+        "https://images.unsplash.com/photo-1556656793-08538906a9f8?ixlib=rb-4.0.3&w=200&h=356&fit=crop",
+        "https://images.unsplash.com/photo-1574192324001-ee41e18ed679?ixlib=rb-4.0.3&w=200&h=356&fit=crop"
+      ],
+      createdAt: new Date()
+    };
+    this.apps.set(airDroidApp.id, airDroidApp);
+
+    // Reviews
+    const reviewsData: Review[] = [
+      {
+        id: randomUUID(),
+        appId: "airdroid-1",
+        userName: "Linh Tran",
+        userAvatar: "https://images.unsplash.com/photo-1494790108755-2616b612b4c7?ixlib=rb-4.0.3&w=32&h=32&fit=crop&crop=face",
+        rating: 5,
+        content: "Ứng dụng rất hữu ích, giúp tôi quản lý file dễ dàng từ máy tính. Giao diện thân thiện.",
+        createdAt: new Date()
+      },
+      {
+        id: randomUUID(),
+        appId: "airdroid-1",
+        userName: "Minh Nguyen",
+        userAvatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&w=32&h=32&fit=crop&crop=face",
+        rating: 4,
+        content: "Tính năng remote rất tiện lợi, chỉ cần cải thiện thêm tốc độ kết nối.",
+        createdAt: new Date()
+      }
+    ];
+    
+    reviewsData.forEach(review => this.reviews.set(review.id, review));
+
+    // Developer apps
+    const devApps: DeveloperApp[] = [
+      {
+        id: randomUUID(),
+        name: "AirMore",
+        developer: "SAND STUDIO",
+        category: "Công cụ",
+        icon: "https://images.unsplash.com/photo-1611224923853-80b023f02d71?ixlib=rb-4.0.3&w=48&h=48&fit=crop",
+        rating: "4.2"
+      },
+      {
+        id: randomUUID(),
+        name: "ApowerManager",
+        developer: "SAND STUDIO",
+        category: "Tiện ích",
+        icon: "https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&w=48&h=48&fit=crop",
+        rating: "4.0"
+      },
+      {
+        id: randomUUID(),
+        name: "AirSync",
+        developer: "SAND STUDIO",
+        category: "Năng suất",
+        icon: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&w=48&h=48&fit=crop",
+        rating: "3.9"
+      },
+      {
+        id: randomUUID(),
+        name: "RemotePC",
+        developer: "SAND STUDIO",
+        category: "Công cụ",
+        icon: "https://images.unsplash.com/photo-1556656793-08538906a9f8?ixlib=rb-4.0.3&w=48&h=48&fit=crop",
+        rating: "4.1"
+      }
+    ];
+    
+    devApps.forEach(app => this.developerApps.set(app.id, app));
+
+    // Similar apps with real Google Play Store icons
+    const simApps: SimilarApp[] = [
+      {
+        id: randomUUID(),
+        name: "TeamViewer Remote Control",
+        developer: "TeamViewer",
+        category: "Năng suất",
+        icon: "https://play-lh.googleusercontent.com/kiuamHjSKvVwS2fZ9c3dgPBPLDNQhExfw_8_vWhTdFMIQp1Lnf5gl5ZPbO2R55BzBk4=w64-h64-rw",
+        rating: "4.5"
+      },
+      {
+        id: randomUUID(),
+        name: "Chrome Remote Desktop",
+        developer: "Google LLC",
+        category: "Công cụ",
+        icon: "https://play-lh.googleusercontent.com/I4DRWoABrUQsaAIQFVSKha98q1u2ilEdrwPJBaf9Mb8KdGZnXzs5DObrwcwUZovgOA=w64-h64-rw",
+        rating: "2.4"
+      },
+      {
+        id: randomUUID(),
+        name: "RealVNC Viewer",
+        developer: "RealVNC Limited",
+        category: "Tiện ích",
+        icon: "https://play-lh.googleusercontent.com/-KDD_KfQr8WRNqd2TZ1mo1_bgbM-L_M90ksXRbk42CFpxsclGRoZWhYcO9SrVkPkkw=w64-h64-rw",
+        rating: "4.0"
+      },
+      {
+        id: randomUUID(),
+        name: "Windows App",
+        developer: "Microsoft Corporation",
+        category: "Doanh nghiệp", 
+        icon: "https://play-lh.googleusercontent.com/9m_lnSHQK7ZxpXm7pZ9JnQd8vGqh8KONN5F7VZyFhBVU5kNz00bYvUoRyuIQLL3SW80=w64-h64-rw",
+        rating: "3.3"
+      }
+    ];
+    
+    simApps.forEach(app => this.similarApps.set(app.id, app));
+  }
+
+  async getApp(id: string): Promise<App | undefined> {
+    return this.apps.get(id);
+  }
+
+  async getAppByName(name: string): Promise<App | undefined> {
+    return Array.from(this.apps.values()).find(app => app.name === name);
+  }
+
+  async createApp(insertApp: InsertApp): Promise<App> {
+    const id = randomUUID();
+    const app: App = { ...insertApp, id, createdAt: new Date() };
+    this.apps.set(id, app);
+    return app;
+  }
+
+  async getReviewsByAppId(appId: string): Promise<Review[]> {
+    return Array.from(this.reviews.values()).filter(review => review.appId === appId);
+  }
+
+  async createReview(insertReview: InsertReview): Promise<Review> {
+    const id = randomUUID();
+    const review: Review = { ...insertReview, id, createdAt: new Date() };
+    this.reviews.set(id, review);
+    return review;
+  }
+
+  async getDeveloperApps(developer: string): Promise<DeveloperApp[]> {
+    return Array.from(this.developerApps.values()).filter(app => app.developer === developer);
+  }
+
+  async getSimilarApps(): Promise<SimilarApp[]> {
+    return Array.from(this.similarApps.values());
+  }
+
+  async getAllApps(): Promise<App[]> {
+    return Array.from(this.apps.values());
+  }
+}
+
+export const storage = new MemStorage();
