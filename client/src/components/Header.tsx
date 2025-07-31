@@ -15,34 +15,49 @@ export default function Header() {
           <ArrowLeft className="h-6 w-6 text-gray-700" />
         </Button>
         
-        {/* Title - Hidden on mobile, shown on larger screens */}
-        <div className="hidden sm:flex items-center space-x-2">
+        {/* Google Play Logo - Hidden on mobile, shown on larger screens */}
+        <div className="hidden sm:flex items-center space-x-3">
           <a 
             href="https://play.google.com/store" 
             target="_blank" 
             rel="noopener noreferrer"
-            className="flex items-center space-x-2 hover:opacity-80 transition-opacity"
+            className="flex items-center space-x-3 hover:opacity-80 transition-opacity"
           >
-            {/* Logo - You can replace this with an image */}
-            <img 
-              src="/appstore.png" 
-              alt="App Store Logo" 
-              className="w-6 h-6 rounded-sm"
-              onError={(e) => {
-                // Fallback to CSS logo if image fails to load
-                const target = e.currentTarget as HTMLImageElement;
-                target.style.display = 'none';
-                const nextEl = target.nextElementSibling as HTMLElement;
-                if (nextEl) {
-                  nextEl.style.display = 'flex';
-                }
-              }}
-            />
-            <div className="w-6 h-6 bg-play-green rounded-sm items-center justify-center hidden">
-              <div className="w-3 h-3 bg-white rounded-sm transform rotate-45"></div>
+            {/* Google Play Logo SVG */}
+            <div className="flex items-center space-x-2">
+              <svg className="w-7 h-7" viewBox="0 0 24 24" fill="none">
+                <defs>
+                  <linearGradient id="playGreen" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#0F9D58" />
+                    <stop offset="100%" stopColor="#16A085" />
+                  </linearGradient>
+                  <linearGradient id="playBlue" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#4285F4" />
+                    <stop offset="100%" stopColor="#2196F3" />
+                  </linearGradient>
+                  <linearGradient id="playYellow" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#FFEB3B" />
+                    <stop offset="100%" stopColor="#FFC107" />
+                  </linearGradient>
+                  <linearGradient id="playRed" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#EA4335" />
+                    <stop offset="100%" stopColor="#E53935" />
+                  </linearGradient>
+                </defs>
+                {/* Play Store triangle logo */}
+                <path d="M3 20.5L13.09 10.41L3 .32V20.5z" fill="url(#playGreen)" />
+                <path d="M16.58 6.91L13.09 10.41L16.58 13.9L20.07 10.41L16.58 6.91z" fill="url(#playYellow)" />
+                <path d="M13.09 10.41L3 20.5L16.58 13.9L13.09 10.41z" fill="url(#playRed)" />
+                <path d="M13.09 10.41L16.58 6.91L3 .32L13.09 10.41z" fill="url(#playBlue)" />
+              </svg>
+              <div className="flex flex-col">
+                <span className="text-lg font-medium text-gray-800 leading-tight">Google Play</span>
+                <div className="flex items-center space-x-1">
+                  <span className="text-xs text-gray-600">Store</span>
+                  <span className="text-xs bg-green-100 text-green-800 px-2 py-0.5 rounded-full font-medium">Lite</span>
+                </div>
+              </div>
             </div>
-            <span className="text-xl font-medium play-gray">App Store</span>
-            <span className="text-xs bg-play-green text-white px-2 py-1 rounded-full ml-2">Lite</span>
           </a>
         </div>
         

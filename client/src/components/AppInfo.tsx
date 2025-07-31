@@ -331,6 +331,45 @@ export default function AppInfo({ app }: AppInfoProps) {
         Cài đặt trên điện thoại. Con thiết bị khác.
       </div>
 
+      {/* Google Play Verification Badge */}
+      <div className="flex items-center justify-center mt-4 p-3 bg-green-50 border border-green-200 rounded-lg">
+        <div className="flex items-center space-x-2">
+          <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none">
+            <defs>
+              <linearGradient id="playGreenSmall" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#0F9D58" />
+                <stop offset="100%" stopColor="#16A085" />
+              </linearGradient>
+              <linearGradient id="playBlueSmall" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#4285F4" />
+                <stop offset="100%" stopColor="#2196F3" />
+              </linearGradient>
+              <linearGradient id="playYellowSmall" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#FFEB3B" />
+                <stop offset="100%" stopColor="#FFC107" />
+              </linearGradient>
+              <linearGradient id="playRedSmall" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#EA4335" />
+                <stop offset="100%" stopColor="#E53935" />
+              </linearGradient>
+            </defs>
+            <path d="M3 20.5L13.09 10.41L3 .32V20.5z" fill="url(#playGreenSmall)" />
+            <path d="M16.58 6.91L13.09 10.41L16.58 13.9L20.07 10.41L16.58 6.91z" fill="url(#playYellowSmall)" />
+            <path d="M13.09 10.41L3 20.5L16.58 13.9L13.09 10.41z" fill="url(#playRedSmall)" />
+            <path d="M13.09 10.41L16.58 6.91L3 .32L13.09 10.41z" fill="url(#playBlueSmall)" />
+          </svg>
+          <div className="flex flex-col">
+            <div className="flex items-center space-x-1">
+              <span className="text-sm font-medium text-green-800">Được xác minh bởi Google Play</span>
+              <svg className="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+              </svg>
+            </div>
+            <span className="text-xs text-green-600">Ứng dụng đã được kiểm tra và đảm bảo an toàn</span>
+          </div>
+        </div>
+      </div>
+
       {/* Debug Panel - Hidden by default */}
       {showDebugInfo && (
         <div className="mt-4 p-4 bg-gray-100 rounded-lg border-2 border-dashed border-gray-300">
