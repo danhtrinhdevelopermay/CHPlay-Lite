@@ -59,6 +59,30 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Create a new review
+  app.post("/api/apps/:id/reviews", async (req, res) => {
+    try {
+      const { userName, userAvatar, rating, content } = req.body;
+      
+      if (!userName || !rating || !content || rating < 1 || rating > 5) {
+        return res.status(400).json({ message: "Invalid review data" });
+      }
+
+      const review = await storage.createReview({
+        appId: req.params.id,
+        userName,
+        userAvatar: userAvatar || "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&w=32&h=32&fit=crop&crop=face",
+        rating: parseInt(rating),
+        content
+      });
+      
+      res.status(201).json(review);
+    } catch (error) {
+      console.error("Error creating review:", error);
+      res.status(500).json({ message: "Internal server error" });
+    }
+  });
+
   // Get developer apps
   app.get("/api/developer/:developer/apps", async (req, res) => {
     try {

@@ -85,7 +85,7 @@ export default function AppDetail() {
             
             <div className="space-y-8">
               <RatingsBreakdown app={app} />
-              <RecentReviews reviews={reviews || []} />
+              <RecentReviews reviews={reviews || []} appId={app.id} />
             </div>
           </div>
           

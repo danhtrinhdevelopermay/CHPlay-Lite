@@ -1,12 +1,14 @@
 import { Star } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import type { Review } from "@shared/schema";
+import { ReviewForm } from "./ReviewForm";
 
 interface RecentReviewsProps {
   reviews: Review[];
+  appId: string;
 }
 
-export default function RecentReviews({ reviews }: RecentReviewsProps) {
+export default function RecentReviews({ reviews, appId }: RecentReviewsProps) {
   const renderStars = (rating: number) => {
     return Array.from({ length: 5 }, (_, i) => (
       <Star
@@ -46,6 +48,9 @@ export default function RecentReviews({ reviews }: RecentReviewsProps) {
             </div>
           ))}
         </div>
+        
+        {/* Review Form */}
+        <ReviewForm appId={appId} />
       </CardContent>
     </Card>
   );
