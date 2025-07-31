@@ -32,9 +32,9 @@ export function ReviewForm({ appId, onSuccess }: ReviewFormProps) {
       return response.json();
     },
     onSuccess: () => {
-      // Invalidate and refetch reviews
-      queryClient.invalidateQueries({ queryKey: [`/api/apps/${appId}/reviews`] });
-      queryClient.invalidateQueries({ queryKey: [`/api/apps/by-name`] });
+      // Force refetch reviews immediately
+      queryClient.refetchQueries({ queryKey: ["/api/apps", appId, "reviews"] });
+      queryClient.invalidateQueries({ queryKey: ["/api/apps/by-name"] });
       
       toast({
         title: "Thành công!",
