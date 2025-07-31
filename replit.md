@@ -88,10 +88,30 @@ Modular React components for different sections:
 - **Production**: Serves static files from Express with API routes
 - **Database**: Configured via `DATABASE_URL` environment variable
 
+### Render Anti-Spin Down Integration
+- **Keep-Alive Service**: Automatically prevents Render free tier instances from spinning down
+- **Health Monitoring**: Built-in `/api/health` endpoint for service monitoring
+- **Production Only**: Service only activates in production environment
+- **Auto-Detection**: Automatically detects Render URLs via environment variables
+- **Smart Timing**: 10-minute ping intervals to stay within Render's 15-minute timeout
+
 ### Hosting Considerations
 - **Static Assets**: Frontend builds to static files for CDN deployment
 - **API Server**: Express server handles API requests and serves frontend
 - **Database**: PostgreSQL compatible (supports Neon, traditional PostgreSQL)
 - **Session Storage**: Uses PostgreSQL for session persistence
+- **Render Optimization**: Built-in anti-spin down functionality for improved user experience
 
-The application is designed for easy deployment to platforms like Replit, Vercel, or traditional VPS hosting with minimal configuration changes.
+The application is designed for easy deployment to platforms like Replit, Vercel, Render, or traditional VPS hosting with minimal configuration changes.
+
+## Recent Changes
+
+### July 31, 2025 - Anti-Spin Down Integration
+- **Added Keep-Alive Service**: Integrated comprehensive anti-spin down solution for Render deployment
+- **Health Monitoring**: Added `/api/health` endpoint for service monitoring and keep-alive pings
+- **Environment Detection**: Automatic URL detection from RENDER_EXTERNAL_URL, REPLIT_URL, or localhost
+- **Production-Only Activation**: Service only runs in production to avoid unnecessary development pings
+- **Configurable Settings**: Support for custom intervals, URLs, and enable/disable via environment variables
+- **Graceful Shutdown**: Proper cleanup during server termination
+- **Comprehensive Logging**: Detailed ping status and error logging
+- **Documentation**: Added deployment guide and usage instructions

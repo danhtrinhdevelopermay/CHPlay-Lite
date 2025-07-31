@@ -1,6 +1,7 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
+import { keepAliveService } from "./keepAlive";
 import path from "path";
 
 export async function registerRoutes(app: Express): Promise<Server> {
@@ -76,6 +77,22 @@ export async function registerRoutes(app: Express): Promise<Server> {
     } catch (error) {
       res.status(500).json({ message: "Internal server error" });
     }
+  });
+
+  // Health check endpoint for keep-alive service
+  app.get("/api/health", (req, res) => {
+    res.json({ 
+      status: "ok", 
+      timestamp: new Date().toISOString(),
+      uptime: process.uptime(),
+      memory: process.memoryUsage(),
+      environment: process.env.NODE_ENV || "development"
+    });
+  });
+
+  // Keep-alive service status endpoint (optional for debugging)
+  app.get("/api/keep-alive/status", (req, res) => {
+    res.json(keepAliveService.getStatus());
   });
 
   // Download APK file
