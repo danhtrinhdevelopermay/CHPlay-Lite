@@ -1,4 +1,4 @@
-import { Star, Download, Play } from "lucide-react";
+import { Star, Download, Play, Share2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -140,6 +140,50 @@ export default function AppInfo({ app }: AppInfoProps) {
     }
   };
 
+  const handleShareClick = async () => {
+    const appUrl = window.location.href;
+    const shareText = `Hãy thử ứng dụng ${app.name} từ ${app.developer}!`;
+    
+    // Kiểm tra Web Share API có hỗ trợ không
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: app.name,
+          text: shareText,
+          url: appUrl
+        });
+      } catch (error) {
+        console.log('Share cancelled or error:', error);
+      }
+    } else {
+      // Fallback: Copy to clipboard
+      try {
+        await navigator.clipboard.writeText(`${shareText}\n${appUrl}`);
+        alert('Đã sao chép liên kết chia sẻ vào clipboard!');
+      } catch (error) {
+        // Fallback cuối cùng: Open in social media
+        const encodedText = encodeURIComponent(shareText);
+        const encodedUrl = encodeURIComponent(appUrl);
+        
+        // Hiển thị các tùy chọn chia sẻ
+        const shareOptions = [
+          { name: 'Facebook', url: `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}` },
+          { name: 'WhatsApp', url: `https://wa.me/?text=${encodedText}%20${encodedUrl}` },
+          { name: 'Telegram', url: `https://t.me/share/url?url=${encodedUrl}&text=${encodedText}` },
+          { name: 'Zalo', url: `https://zalo.me/share/url?url=${encodedUrl}&text=${encodedText}` }
+        ];
+        
+        const choice = confirm('Chọn nền tảng để chia sẻ:\n1. Facebook\n2. WhatsApp\n3. Telegram\n4. Zalo\n\nNhấn OK để mở Facebook, Cancel để thử WhatsApp');
+        
+        if (choice) {
+          window.open(shareOptions[0].url, '_blank');
+        } else {
+          window.open(shareOptions[1].url, '_blank');
+        }
+      }
+    }
+  };
+
   return (
     <section className="bg-white p-4 sm:p-6 mb-6">
       {/* App Icon and Title */}
@@ -224,6 +268,17 @@ export default function AppInfo({ app }: AppInfoProps) {
               Cài đặt
             </div>
           )}
+        </Button>
+        
+        {/* Share Button */}
+        <Button 
+          onClick={handleShareClick}
+          variant="outline"
+          size="icon"
+          className="w-12 h-12 border-blue-600 text-blue-600 rounded-lg hover:bg-blue-50"
+          title="Chia sẻ ứng dụng"
+        >
+          <Share2 className="w-4 h-4" />
         </Button>
         
         {/* Secondary Install Button - Only show when app is installed */}
