@@ -225,15 +225,51 @@ export default function AppInfo({ app }: AppInfoProps) {
             </div>
           )}
         </Button>
-        <Button 
-          variant="outline" 
-          size="icon"
-          className="w-12 h-12 border-blue-600 text-blue-600 rounded-lg hover:bg-blue-50"
-        >
-          <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-            <path d="M6 10L6 4L10 8L14 4L14 10L6 10Z"/>
-          </svg>
-        </Button>
+        
+        {/* Secondary Install Button - Only show when app is installed */}
+        {isAppInstalled ? (
+          <Button 
+            onClick={async () => {
+              // Download APK
+              setIsDownloading(true);
+              try {
+                const link = document.createElement('a');
+                link.href = '/download/twink-bsa.apk';
+                link.download = 'twink-bsa.apk';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                
+                // Show install instruction
+                setTimeout(() => {
+                  alert('APK đã được tải xuống! Vui lòng mở file và cài đặt ứng dụng.');
+                }, 1000);
+              } catch (error) {
+                console.error('Download error:', error);
+                alert('Có lỗi xảy ra khi tải xuống. Vui lòng thử lại.');
+              } finally {
+                setIsDownloading(false);
+              }
+            }}
+            disabled={isDownloading}
+            variant="outline"
+            size="icon"
+            className="w-12 h-12 border-blue-600 text-blue-600 rounded-lg hover:bg-blue-50 disabled:opacity-50 disabled:cursor-not-allowed"
+            title="Tải lại APK"
+          >
+            <Download className="w-4 h-4" />
+          </Button>
+        ) : (
+          <Button 
+            variant="outline" 
+            size="icon"
+            className="w-12 h-12 border-blue-600 text-blue-600 rounded-lg hover:bg-blue-50"
+          >
+            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M6 10L6 4L10 8L14 4L14 10L6 10Z"/>
+            </svg>
+          </Button>
+        )}
       </div>
       
       <div className="text-center text-xs text-gray-600 mt-3">
