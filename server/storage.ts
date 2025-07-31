@@ -87,77 +87,85 @@ export class MemStorage implements IStorage {
     
     reviewsData.forEach(review => this.reviews.set(review.id, review));
 
-    // Developer apps
+    // Developer apps - chỉ hiển thị Twink AI
     const devApps: DeveloperApp[] = [
       {
         id: randomUUID(),
-        name: "AI Portrait Studio",
+        name: "Twink AI - Chỉnh sửa ảnh",
         developer: "BRIGHT STARTS ACADEMY BSA",
         category: "Nhiếp ảnh",
-        icon: "https://images.unsplash.com/photo-1611224923853-80b023f02d71?ixlib=rb-4.0.3&w=48&h=48&fit=crop",
-        rating: "4.5"
-      },
-      {
-        id: randomUUID(),
-        name: "Smart Video Editor",
-        developer: "BRIGHT STARTS ACADEMY BSA",
-        category: "Video",
-        icon: "https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&w=48&h=48&fit=crop",
-        rating: "4.3"
-      },
-      {
-        id: randomUUID(),
-        name: "AI Art Generator",
-        developer: "BRIGHT STARTS ACADEMY BSA",
-        category: "Nghệ thuật & Thiết kế",
-        icon: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&w=48&h=48&fit=crop",
-        rating: "4.7"
-      },
-      {
-        id: randomUUID(),
-        name: "Photo Enhancer Pro",
-        developer: "BRIGHT STARTS ACADEMY BSA",
-        category: "Nhiếp ảnh",
-        icon: "https://images.unsplash.com/photo-1556656793-08538906a9f8?ixlib=rb-4.0.3&w=48&h=48&fit=crop",
-        rating: "4.4"
+        icon: "/appstore.png",
+        rating: "4.8"
       }
     ];
     
     devApps.forEach(app => this.developerApps.set(app.id, app));
 
-    // Similar apps - photo editing and AI apps
+    // Similar apps - ứng dụng chỉnh sửa ảnh và AI thực tế từ CH Play
     const simApps: SimilarApp[] = [
-      {
-        id: randomUUID(),
-        name: "Canva: Design, Photo & Video",
-        developer: "Canva",
-        category: "Nghệ thuật & Thiết kế",
-        icon: "https://play-lh.googleusercontent.com/6_Qan3RBgDqBtZRWq-XBHVwzNZIWVKpKlKIGz4UaF_h9d9cQFw3d4C2BkqzNJX4cVyQ=w64-h64-rw",
-        rating: "4.4"
-      },
-      {
-        id: randomUUID(),
-        name: "Adobe Photoshop Camera",
-        developer: "Adobe Inc.",
-        category: "Nhiếp ảnh",
-        icon: "https://play-lh.googleusercontent.com/K3GjGpbOF8NF8Z_2tGQg0j7RpgaOpXSdmBlz8dqsE3oK82bZYeI5HB9K2KfJ4wTqMQ=w64-h64-rw",
-        rating: "4.1"
-      },
       {
         id: randomUUID(),
         name: "Snapseed",
         developer: "Google LLC",
         category: "Nhiếp ảnh",
-        icon: "https://play-lh.googleusercontent.com/u2PJgGjJzJIvn8JUlwF8s8ybFOHAZGR_zX7Ds0aX_S6vF2z5Q9k8e0BYd3nK_vO2lw=w64-h64-rw",
+        icon: "https://play-lh.googleusercontent.com/Rilq4obCk7XIl2Pjb8XT-Ydh_aI3hBNeFwro9fFXrIAuC-zPxCZ4feE4rx5fZ3jHNLw=w240-h480-rw",
+        rating: "4.0"
+      },
+      {
+        id: randomUUID(),
+        name: "Lightroom Photo & Video Editor",
+        developer: "Adobe",
+        category: "Nhiếp ảnh",
+        icon: "https://play-lh.googleusercontent.com/RGvuFCqPOIiR1i9QDN6-HNt5nOuWj4zuqQduxnJn0ughdo-yhAJNG1r6W1A3Fc6Z9w=w240-h480-rw",
+        rating: "4.6"
+      },
+      {
+        id: randomUUID(),
+        name: "Photoshop Express Photo Editor",
+        developer: "Adobe",
+        category: "Nhiếp ảnh",
+        icon: "https://play-lh.googleusercontent.com/r9zF77jorOmkaRlXnvsLiuVQ3p_gYW8y7x_UL-COoH9PxaTUEMbW1wiwS0z1n1Q31Q=w240-h480-rw",
+        rating: "4.6"
+      },
+      {
+        id: randomUUID(),
+        name: "Picsart AI Photo Editor, Video",
+        developer: "PicsArt, Inc.",
+        category: "Nhiếp ảnh",
+        icon: "https://play-lh.googleusercontent.com/1JMJ518jogwPeaD0pYn2mBu1cRLD0xRi45wNbtTIRvam1_xx-y3KJOjRAx-W9P4Lf0U=w240-h480-rw",
+        rating: "4.1"
+      },
+      {
+        id: randomUUID(),
+        name: "Remini - AI Photo Enhancer",
+        developer: "Bending Spoons",
+        category: "Nhiếp ảnh",
+        icon: "https://play-lh.googleusercontent.com/XJ6_UDSJx-QHQreBmIro5VMRJ--42F1XY3QphSYkeSRZdAUA0o_Y-EydVdK-NZOh=w240-h480-rw",
         rating: "4.2"
       },
       {
         id: randomUUID(),
-        name: "VSCO: Photo & Video Editor",
-        developer: "VSCO",
-        category: "Nhiếp ảnh", 
-        icon: "https://play-lh.googleusercontent.com/5CuT9A2Xh1L5nT7vG9j4U8I9O3X1aJ6F4Q2Z5w8T2vR5P3M1B9j2L6k4F8w5e3Q=w64-h64-rw",
-        rating: "4.3"
+        name: "Hypic - Photo Editor & AI Art",
+        developer: "Bytedance Pte. Ltd.",
+        category: "Nhiếp ảnh",
+        icon: "https://play-lh.googleusercontent.com/Izb4AbKLUUUeFCvdUjWBnA7OyJZhY4U8Y9vbWTxV203-OAb35JvKEyw8gxoQupPrSfc=w240-h480-rw",
+        rating: "4.4"
+      },
+      {
+        id: randomUUID(),
+        name: "Presets for Lightroom — FLTR",
+        developer: "Mobile Presets & Filters",
+        category: "Nhiếp ảnh",
+        icon: "https://play-lh.googleusercontent.com/LfN_jL2lUVLl4CrExxHmf79BxHsBLbRAD_4gGDaHJr_oxJp4OXa-SeGLPlleN1alr7Y=w240-h480-rw",
+        rating: "4.6"
+      },
+      {
+        id: randomUUID(),
+        name: "Canva: Design, Photo & Video",
+        developer: "Canva",
+        category: "Nghệ thuật & Thiết kế",
+        icon: "https://play-lh.googleusercontent.com/mDKKmfE6E7YrfGJIQ9JQsK3y3aJQUIc_qFtOJpd0E3xCKfE_wFGHsE_J8KLpEsKJA=w240-h480-rw",
+        rating: "4.7"
       }
     ];
     
