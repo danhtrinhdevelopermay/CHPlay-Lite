@@ -53,7 +53,7 @@ export class DatabaseStorage implements IStorage {
     await db.insert(apps).values({
       id: "airdroid-1",
       name: "Twink AI - Chỉnh sửa ảnh với AI tiên tiến",
-      developer: "BRIGHT STARTS ACADEMY BSA",
+      developer: "Danh Trình - BSA",
       category: "Nhiếp ảnh",
       icon: "client/appstore.png",
       rating: "4.6",
